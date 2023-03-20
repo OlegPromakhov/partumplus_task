@@ -1,0 +1,28 @@
+{
+  "name": "eg_task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:chrome": "cypress run --browser chrome",
+    "cy:spec": "cypress run --spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OlegPromakhov/eg_task.git"
+  },
+  "author": "Oleg Promakhov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OlegPromakhov/eg_task/issues"
+  },
+  "homepage": "https://github.com/OlegPromakhov/eg_task#readme",
+  "dependencies": {
+    "cypress": "^12.8.1",
+    "n": "^9.0.1",
+    "prettier": "^2.8.4",
+    "typescript": "^5.0.2"
+  }
+}
