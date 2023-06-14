@@ -1,48 +1,34 @@
-import { EgPage } from './pages/egPage';
-
-const egPage = new EgPage();
-const txtFilePath : string = './cypress/fixtures/8-bit.png';
-const pageTitle : string = 'Practice Page';
+import { LoginPage } from './pages/loginPage';
+const loginPage = new LoginPage();
 
 describe('Page components test', () => {
-    beforeEach(() => {
-        egPage.openPage();
-    });
-    it('Verify page is opened', () => {
-        egPage.verifyPageOpened(pageTitle);
-    });
-    it('Verify Home button has correct link', () => {
-        egPage.verifyHomeBtn();
-    });
-    it('Verify dropdown', () => {
-        egPage.verifyDropdown();
-    });
-    it('Verify image uploader', () => {
-        egPage.uploadImg(txtFilePath);
-        egPage.verifyImgDisplayed();
-    });
-    it('Verify New Tab button', () => {
-        egPage.verifyNewTab();
-    });
-    it('Verify alert', () => {
-        cy.task('readTxtFile', './cypress/fixtures/alert-text.txt').then((text) => {
-            egPage.inputAlertText(text);
-            egPage.clickAlertBtn();
-            egPage.verifyAlertTxt(text);
+    before(() => {
+        cy.fixture('users').then((userData) => {
+            this.userData = userData;
+        });
+        cy.fixture('messages').then((appMessages) => {
+            this.appMessages = appMessages;
         });
     });
-    it('Verify text box', () => {
-        egPage.textBoxVisible(true);
-        egPage.clickHideBtn();
-        egPage.textBoxVisible(false);
-        egPage.clickShowBtn();
-        egPage.textBoxVisible(true);
+    beforeEach(() => {
+			loginPage.openPage();
     });
-    it('Verify hover menu', () => {
-        egPage.verifyHoverBtn();
-        egPage.verifyHoverMenu();
+
+    it('Verify page is opened', () => {
+			loginPage.verifyPageOpened(this.appMessages.loginPageTitle);
     });
-    it('Verify iFrame', () => {
-        egPage.verifyIFrame();
+    it('Verify user is successfully logged in', () => {
+			loginPage.inputEmail(this.userData.validEmail);
+            loginPage.inputPassword(this.userData.validPassword);
+            loginPage.clickSubmit();
+            cy.intercept('POST', '/api/v1/sign-in', (req) => {
+                expect(req.status).to.eq(201)
+            })
+    });
+    it('Verify user is not logged in with bad credentials', () => {
+            loginPage.inputEmail(this.userData.validEmail);
+            loginPage.inputPassword(this.userData.invalidPassword);
+            loginPage.clickSubmit();
+            loginPage.verifyValidation(this.appMessages.loginValidation);
     });
 });

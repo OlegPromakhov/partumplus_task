@@ -3,16 +3,9 @@ const fs = require('fs');
 
 export default defineConfig({
   env: {
-    indexUrl: './cypress/fixtures/task.html',
+    indexUrl: 'https://dev.omni-dispatch.com',
   },
   e2e: {
-    "baseUrl": null,
-    setupNodeEvents(on, config) {
-      on('task', {
-        readTxtFile(filename) {
-            return fs.readFileSync(filename, 'utf8')
-          }
-      })
-    },
+    "baseUrl": 'https://dev.omni-dispatch.com',
   },
 });

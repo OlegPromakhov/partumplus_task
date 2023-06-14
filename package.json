@@ -1,5 +1,5 @@
 {
-  "name": "eg_task",
+  "name": "pp_task",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OlegPromakhov/eg_task.git"
+    "url": "git+https://github.com/OlegPromakhov/pp_task.git"
   },
   "author": "Oleg Promakhov",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/OlegPromakhov/eg_task/issues"
+    "url": "https://github.com/OlegPromakhov/pp_task/issues"
   },
-  "homepage": "https://github.com/OlegPromakhov/eg_task#readme",
+  "homepage": "https://github.com/OlegPromakhov/pp_task#readme",
   "dependencies": {
     "cypress": "^12.8.1",
     "n": "^9.0.1",
